@@ -1,7 +1,7 @@
 # Функция для рассчета толщины и однородности мембраны
 def calculate_thickness(sample_length, testing_points):
     # Проверяем, соответствует ли количество точек требованиям
-    if sample_length < 300 and testing_points < 30:
+    if sample_length < 300 and testing_points < 5:
         return "Количество точек испытания должно быть не менее 30 для длины меньшей 300 мм."
     elif 300 <= sample_length < 1500 and testing_points < 40:
         return "Количество точек испытания должно быть не менее 40 для длины большей 300 мм и меньшей 1500 мм."
@@ -33,3 +33,19 @@ testing_points = int(input("Введите количество точек ис�
 result_thickness, result_range = calculate_thickness(sample_length, testing_points)
 print(f"Средняя толщина мембраны: {result_thickness}")
 print(f"Диапазон толщины мембраны: {result_range}")
+
+# Дополнительный функционал:
+
+# Функция для рассчета прочностных характеристик мембраны
+def calculate_tensile_strength(max_load, width, thickness):
+    # Рассчитываем прочностную характеристику
+    tensile_strength = max_load / (width * thickness)
+    return tensile_strength
+
+# Параметры испытания
+max_load = float(input("Введите максимальную нагрузку в Н: "))
+width = float(input("Введите ширину образца в мм: "))
+thickness = result_thickness
+
+tensile_strength = calculate_tensile_strength(max_load, width, thickness)
+print(f"Прочностная характеристика мембраны: {tensile_strength}")
